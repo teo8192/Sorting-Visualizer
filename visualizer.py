@@ -9,6 +9,8 @@ import pygame
 def float_to_color(val, red_val=0, blue_val=1):
     """
     Turn a floating point to a color
+    red_val is the lower bound
+    blue_val is the upper bound
     """
     int_val = int(1023 * (val - red_val) / (blue_val - red_val))
     if int_val < 256:
@@ -30,7 +32,33 @@ class Visualize:
     """
     The visualize class
     """
-    def __init__(self, dim=1000, mode="bars", w=1, num=1000):
+    def __init__(self, dim=1000, mode="rainbow", block_size=None, num=None):
+        """
+        dim: with and height dimensions of the screen, a single integer
+        mode: string reprecenting the mode. default: 'rainbow'
+        block_size: the size of the blocks/bars/rainbow stripes.
+        num: the number of blocks/stripes/bars.
+
+        only one of num and block_size needs to be set, sice the other
+        one may be derived from the information of the window dimensions
+
+        If the block_size and num does not multiply to the dim,
+        dim gets set to the product of num and block_size
+        """
+
+        if num is None and block_size is None:
+            self.num = dim
+            self.block_size = 1
+        else:
+            if num is None:
+                self.block_size = block_size
+                self.num = int(dim / block_size)
+            else:
+                self.num = num
+                self.block_size = int(dim / num)
+
+        dim = self.block_size * self.num
+
         self.width = dim
         self.height = self.width
         self.data = []
@@ -40,11 +68,7 @@ class Visualize:
                            "rainbow": self.draw_rainbow}
         self._mode = mode
         self._vis_func = self.draw_funcs[self.mode]
-        self.num = num
-        self.block_size = w
-        if num * w != dim:
-            self.block_size = w
-            self.num = int(dim / w)
+
         #pylint: disable=no-member
         pygame.init()
         self.screen = pygame.display.set_mode((self.width, self.height))
