@@ -95,9 +95,11 @@ def bubblesort(data, drawfn):
         swapped = False
         for i in range(len(data) - 2):
             if data[i] > data[i + 1]:
-                drawfn()
+                if i % 10 == 0:
+                    drawfn()
                 swapped = True
                 swap_array(data, i, i + 1)
+    drawfn()
 
 #
 # MERGE SORT
@@ -135,8 +137,8 @@ def split(data, temp, lo, hi, drawfn):
         i = lo
         while i < hi:
             temp[i] = data[i]
-            i += 1
             drawfn(data=temp)
+            i += 1
 
 def mergesort(data, drawfn):
     """
@@ -193,10 +195,13 @@ def heapify(data, drawfn):
     """
     Turn an array into a heap
     """
-    start = parent(len(data) - 1)
-    while start >= 0:
+    for start in [len(data) - 1 - x for x in range(len(data))]:
         sift_down(data, start, len(data) - 1, drawfn)
-        start -= 1
+
+    # start = parent(len(data) - 1)
+    # while start >= 0:
+        # sift_down(data, start, len(data) - 1, drawfn)
+        # start -= 1
 
 def heapsort(data, drawfn):
     """
@@ -226,14 +231,15 @@ def insertion_sort(data, drawfn):
     Insertion sort
     """
     print('insertion sort')
-    i = 1
-    while i < len(data):
+    for i in [x + 1 for x in range(len(data)-1)]:
         j = i
-        while j > 0 and data[j-1]>data[j]:
+        while j > 0 and data[j-1] > data[j]:
             swap_array(data, j, j - 1)
+            # do not use too long time, but still show what happens
+            # if i % 20 == 0:
+                # drawfn()
             j -= 1
-            drawfn()
-        i += 1
+        drawfn()
 
 #
 # selection sort
