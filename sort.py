@@ -93,7 +93,7 @@ def bubblesort(data, drawfn):
     swapped = True
     while swapped:
         swapped = False
-        for i in range(len(data) - 2):
+        for i in range(len(data) - 1):
             if data[i] > data[i + 1]:
                 if i % 10 == 0:
                     drawfn()
@@ -272,7 +272,7 @@ def destructionsort(data, drawfn):
     print('destruction sort')
     least = data[0]
     for i in range(len(data)):
-        if data[i] < least:
+        if data[i] <= least:
             data[i] = 0
             drawfn()
         else:
