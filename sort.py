@@ -1,8 +1,7 @@
 """
 Sorting algorithms
+Author: Teodor Dahl Knutsen
 """
-
-from time import sleep
 
 def quicksort(data, drawfn):
     """
