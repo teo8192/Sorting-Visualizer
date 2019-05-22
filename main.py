@@ -6,7 +6,7 @@ This will visualize stuff
 from time import sleep
 from sort import (quicksort, bubblesort,
                   mergesort, heapsort, insertion_sort,
-                  selection_sort, stalinsort)
+                  selection_sort, destructionsort)
 from viz import Visualize
 
 def main():
@@ -32,7 +32,7 @@ def main():
     vis.visualize(bubblesort)
     sleep(2)
     vis.gen_data()
-    vis.visualize(stalinsort)
+    vis.visualize(destructionsort)
 
 if __name__ == '__main__':
     main()

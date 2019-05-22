@@ -219,11 +219,11 @@ def selection_sort(data, drawfn):
 
         min_idx = i + 1
 
-def stalinsort(data, drawfn):
+def destructionsort(data, drawfn):
     """
-    Stalin sort
+    Remove all elements that is not in order
     """
-    print('stalin sort')
+    print('destruction sort')
     least = data[0]
     for i in range(len(data)):
         if data[i] < least:
