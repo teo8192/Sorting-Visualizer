@@ -6,6 +6,26 @@ Author: Teodor Dahl Knutsen <teodor@dahlknutsen.no>
 from random import randint
 import pygame
 
+def float_to_color(val, red_val=0, blue_val=1):
+    """
+    Turn a floating point to a color
+    """
+    int_val = int(1023 * (val - red_val) / (blue_val - red_val))
+    if int_val < 256:
+        # from red to yelow
+        return (255, int_val, 0)
+    if int_val < 512:
+        # yellow to green
+        int_val -= 256
+        return (255 - int_val, 255, 0)
+    if int_val < 768:
+        # green to aqua
+        int_val -= 512
+        return (0, 255, int_val)
+    # aqua to blue
+    int_val -= 768
+    return (0, 255 - int_val, 255)
+
 class Visualize:
     """
     The visualize class
@@ -16,7 +36,8 @@ class Visualize:
         self.data = []
         self.draw_funcs = {"bars": self.draw_bars,
                            "grayscale": self.draw_grayscale,
-                           "boxes": self.draw_boxes}
+                           "boxes": self.draw_boxes,
+                           "rainbow": self.draw_rainbow}
         self._mode = mode
         self._vis_func = self.draw_funcs[self.mode]
         self.num = num
@@ -103,6 +124,19 @@ class Visualize:
                              (x * self.block_size, self.height - y,
                               self.block_size, self.block_size))
 
+    def draw_rainbow(self, data):
+        """
+        Grayscale visualization of the data
+        """
+        #pylint: disable=invalid-name
+        for x, y in enumerate(data):
+            col = float_to_color(y / self.height)
+            #pygame.draw.line(self.screen, (col, col, col), (x, 0), (x, self.height))
+            if self.block_size == 1:
+                pygame.draw.line(self.screen, col, (x, 0), (x, self.height))
+            else:
+                pygame.draw.rect(self.screen, col,
+                                 (x * self.block_size, 0, self.block_size, self.height))
 
     def draw_grayscale(self, data):
         """
