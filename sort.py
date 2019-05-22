@@ -8,26 +8,26 @@ def swap_array(data, i, j):
     data[i] = data[j]
     data[j] = tmp
 
-def quicksort_lomunto(data, drawfn):
+def quicksort_lomuto(data, drawfn):
     """
     Entry point for quicksort
     """
-    print('quicksort lomunto')
-    qs_lomunto(data, 0, len(data) - 1, drawfn)
+    print('quicksort lomuto')
+    qs_lomuto(data, 0, len(data) - 1, drawfn)
 
 #pylint: disable=invalid-name
-def qs_lomunto(data, lo, hi, drawfn):
+def qs_lomuto(data, lo, hi, drawfn):
     """
     Recursive quicksort
     """
     if lo < hi:
-        p = partition_lomunto(data, lo, hi, drawfn)
-        qs_lomunto(data, lo, p - 1, drawfn)
-        qs_lomunto(data, p + 1, hi, drawfn)
+        p = partition_lomuto(data, lo, hi, drawfn)
+        qs_lomuto(data, lo, p - 1, drawfn)
+        qs_lomuto(data, p + 1, hi, drawfn)
 
-def partition_lomunto(data, lo, hi, drawfn):
+def partition_lomuto(data, lo, hi, drawfn):
     """
-    Lomunto partition sceme
+    lomuto partition sceme
     """
     i = lo
     j = lo
