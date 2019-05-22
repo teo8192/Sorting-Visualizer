@@ -10,13 +10,52 @@ class Visualize:
     """
     The visualize class
     """
-    def __init__(self, dim=1000):
+    def __init__(self, dim=1000, mode="bars", w=1, num=1000):
         self.width = dim
         self.height = self.width
         self.data = []
+        self.draw_funcs = {"bars": self.draw_bars,
+                           "grayscale": self.draw_grayscale,
+                           "boxes": self.draw_boxes}
+        self._mode = mode
+        self._vis_func = self.draw_funcs[self.mode]
+        self.num = num
+        self.block_size = w
+        if num * w != dim:
+            self.block_size = w
+            self.num = int(dim / w)
         #pylint: disable=no-member
         pygame.init()
         self.screen = pygame.display.set_mode((self.width, self.height))
+        self._bg = (0, 0, 0)
+        self._fg = (255, 255, 255)
+
+    @property
+    def visualize(self):
+        """
+        Visualize a sorting function
+        """
+        return self.visualization
+
+    @visualize.setter
+    def visualize(self, val):
+        if len(val) != 2:
+            return
+
+        self.draw_funcs[val[0]] = val[1]
+
+    @property
+    def mode(self):
+        """
+        The visualization mode
+        """
+        return self._mode
+
+    @mode.setter
+    def mode(self, val):
+        if self.draw_funcs[val] is not None:
+            self._vis_func = self.draw_funcs[val]
+            self._mode = val
 
     def test_data(self):
         """
@@ -28,7 +67,7 @@ class Visualize:
                 exit()
         print('Data is sorted!')
 
-    def visualize(self, sortfn):
+    def visualization(self, sortfn):
         """
         Visualize the sorting function
         """
@@ -40,7 +79,45 @@ class Visualize:
         """
         Regenerate the data array
         """
-        self.data = [randint(0, self.height) for _ in range(self.width)]
+        self.data = [randint(0, self.height) for _ in range(self.num)]
+
+    def draw_bars(self, data):
+        """
+        Visualizes the data as bars
+        """
+        #pylint: disable=invalid-name
+        for x, y in enumerate(data):
+            if self.block_size == 1:
+                pygame.draw.line(self.screen, self._fg, (x, self.height), (x, self.height - y))
+            else:
+                pygame.draw.rect(self.screen, self._fg,
+                                 (x * self.block_size, self.height - y, self.block_size, y))
+
+    def draw_boxes(self, data):
+        """
+        Visualizes the data as bars
+        """
+        #pylint: disable=invalid-name
+        for x, y in enumerate(data):
+            pygame.draw.rect(self.screen, self._fg,
+                             (x * self.block_size, self.height - y,
+                              self.block_size, self.block_size))
+
+
+    def draw_grayscale(self, data):
+        """
+        Grayscale visualization of the data
+        """
+        #pylint: disable=invalid-name
+        for x, y in enumerate(data):
+            col = y / self.height
+            col *= 255
+            #pygame.draw.line(self.screen, (col, col, col), (x, 0), (x, self.height))
+            if self.block_size == 1:
+                pygame.draw.line(self.screen, (col, col, col), (x, 0), (x, self.height))
+            else:
+                pygame.draw.rect(self.screen, (col, col, col),
+                                 (x * self.block_size, 0, self.block_size, self.height))
 
     def draw(self, data=None):
         """
@@ -53,9 +130,8 @@ class Visualize:
             if event.type == pygame.QUIT:
                 exit()
 
-        pygame.draw.rect(self.screen, (0, 0, 0), (0, 0, self.width, self.height))
-        #pylint: disable=invalid-name
-        for x, y in enumerate(data):
-            pygame.draw.line(self.screen, (255, 255, 255), (x, self.height), (x, self.height - y))
+        pygame.draw.rect(self.screen, self._bg, (0, 0, self.width, self.height))
+
+        self._vis_func(data)
 
         pygame.display.update()
