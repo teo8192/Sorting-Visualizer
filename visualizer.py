@@ -1,5 +1,6 @@
 """
 Visualize different sorting algorithms
+Author: Teodor Dahl Knutsen <teodor@dahlknutsen.no>
 """
 
 from random import randint

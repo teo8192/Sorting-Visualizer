@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
 This will visualize stuff
+Author: Teodor Dahl Knutsen <teodor@dahlknutsen.no>
 """
 
 from time import sleep

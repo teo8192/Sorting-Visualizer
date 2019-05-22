@@ -1,6 +1,6 @@
 """
 Sorting algorithms
-Author: Teodor Dahl Knutsen
+Author: Teodor Dahl Knutsen <teodor@dahlknutsen.no>
 """
 
 def quicksort(data, drawfn):
