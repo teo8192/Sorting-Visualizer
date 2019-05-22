@@ -7,7 +7,7 @@ Author: Teodor Dahl Knutsen <teodor@dahlknutsen.no>
 from time import sleep
 from sort import (quicksort, bubblesort,
                   mergesort, heapsort, insertion_sort,
-                  selection_sort, destructionsort)
+                  selection_sort, destructionsort, radixsort)
 from visualizer import Visualize
 
 def main():
@@ -15,6 +15,9 @@ def main():
     Visualize all dem stuff
     """
     vis = Visualize(500)
+
+    vis.visualize(radixsort)
+    sleep(2)
 
     vis.visualize(heapsort)
     sleep(2)

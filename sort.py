@@ -233,3 +233,62 @@ def destructionsort(data, drawfn):
             drawfn()
         else:
             least = data[i]
+
+#
+# RADIX SORT
+#
+
+def get_max(data):
+    """
+    Reutrns the max
+    """
+    mx = data[0]
+    for i in data:
+        if i > mx:
+            mx = i
+    return mx
+
+def count_sort(data, exp, drawfn):
+    output = [0 for _ in range(len(data))]
+    count = [0 for _ in range(10)]
+
+    if len(count) != 10:
+        print('wrong len')
+        exit()
+
+    for i in range(len(data)):
+        count[int(data[i]/exp) % 10] += 1
+    # i = 0
+    # while i < len(data):
+        # count[int(data[i]/exp) % 10] += 1
+        # i += 1
+
+    for i in [x + 1 for x in range(9)]:
+        count[i] += count[i - 1]
+
+    # i = 1
+    # while i < 10:
+        # count[i] += count[i - 1]
+        # i += 1
+
+    i = len(data) - 1
+    while i >= 0:
+        output[count[int(data[i] / exp) % 10] - 1] = data[i]
+        count[int(data[i] / exp) % 10] -= 1
+        i -= 1
+
+    i = 0
+    while i < len(data):
+        data[i] = output[i]
+        drawfn()
+        i += 1
+
+def radixsort(data, drawfn):
+    """
+    Radix sort algorithm
+    """
+    m = get_max(data)
+    exp = 1
+    while int(m / exp) > 0:
+        count_sort(data, exp, drawfn)
+        exp *= 10
