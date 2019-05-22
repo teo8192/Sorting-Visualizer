@@ -7,7 +7,7 @@ from time import sleep
 from sort import (quicksort, bubblesort,
                   mergesort, heapsort, insertion_sort,
                   selection_sort, destructionsort)
-from viz import Visualize
+from visualizer import Visualize
 
 def main():
     """
@@ -16,22 +16,16 @@ def main():
     vis = Visualize()
     vis.visualize(heapsort)
     sleep(2)
-    vis.gen_data()
     vis.visualize(mergesort)
     sleep(2)
-    vis.gen_data()
     vis.visualize(quicksort)
     sleep(2)
-    vis.gen_data()
     vis.visualize(selection_sort)
     sleep(2)
-    vis.gen_data()
     vis.visualize(insertion_sort)
     sleep(2)
-    vis.gen_data()
     vis.visualize(bubblesort)
     sleep(2)
-    vis.gen_data()
     vis.visualize(destructionsort)
 
 if __name__ == '__main__':
