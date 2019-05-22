@@ -192,7 +192,7 @@ def insertion_sort(data, drawfn):
             data[j] = data[j-1]
             data[j-1] = tmp
             j -= 1
-        drawfn()
+            drawfn()
         i += 1
 
 #
