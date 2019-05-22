@@ -213,3 +213,20 @@ class Visualize:
         self._vis_func(data)
 
         pygame.display.update()
+
+def example():
+    """
+    An example usage
+    """
+    from sort import radixsort, quicksort_hoare
+
+    vis = Visualize(block_size=4)
+
+    vis.visualize(radixsort)
+
+    vis.mode = "boxes"
+
+    vis.visualize(quicksort_hoare)
+
+if __name__ == '__main__':
+    example()
