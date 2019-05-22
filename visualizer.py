@@ -18,12 +18,23 @@ class Visualize:
         pygame.init()
         self.screen = pygame.display.set_mode((self.width, self.height))
 
+    def test_data(self):
+        """
+        Check if data is sorted
+        """
+        for i in range(len(self.data) - 1):
+            if self.data[i] > self.data[i + 1]:
+                print('array not sorted!')
+                exit()
+        print('Data is sorted!')
+
     def visualize(self, sortfn):
         """
         Visualize the sorting function
         """
         self.gen_data()
         sortfn(self.data, self.draw)
+        self.test_data()
 
     def gen_data(self):
         """
