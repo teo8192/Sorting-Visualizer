@@ -57,9 +57,9 @@ def bubblesort(data, drawfn):
     swapped = True
     while swapped:
         swapped = False
-        drawfn()
         for i in range(len(data) - 2):
             if data[i] > data[i + 1]:
+                drawfn()
                 swapped = True
                 tmp = data[i]
                 data[i] = data[i+1]
