@@ -29,7 +29,7 @@ class Visualize:
         """
         Regenerate the data array
         """
-        self.data = [randint(0, self.height) for x in range(self.width)]
+        self.data = [randint(0, self.height) for _ in range(self.width)]
 
     def draw(self, data=None):
         """
@@ -46,4 +46,5 @@ class Visualize:
         #pylint: disable=invalid-name
         for x, y in enumerate(data):
             pygame.draw.line(self.screen, (255, 255, 255), (x, self.height), (x, self.height - y))
+
         pygame.display.update()
