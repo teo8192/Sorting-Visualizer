@@ -46,3 +46,31 @@ Spice up the algorithm with the drawing function to visualize it propperly.
  * Selection sort
  * Insertion sort
  * Bubble sort
+
+## Changing the visualization function
+
+This is done by setting the mode property
+
+```python
+from visualizer import Visualize
+from sort import radixsort
+
+vis = Visualize()
+vis.mode = "bars"
+vis.visualize(radixsort)
+```
+
+The code above will visualize the radix sorting algorithm with bars
+
+Currently implemented modes:
+ * rainbow (this is the default)
+ * grayscale
+ * boxes
+ * bars
+
+## Other options
+
+The window dimentions may be set with the `dim` variable when initializing `Visualize`
+
+`block_size` is the with/height of the stripes in the rainbow, boxes and/or bars.
+`num` is the number of stripes/bars etc.
