@@ -15,19 +15,27 @@ def main():
     Visualize all dem stuff
     """
     vis = Visualize()
+
     vis.visualize(heapsort)
     sleep(2)
+
     vis.visualize(mergesort)
     sleep(2)
+
     vis.visualize(quicksort)
     sleep(2)
+
     vis.visualize(selection_sort)
     sleep(2)
+
     vis.visualize(insertion_sort)
     sleep(2)
+
     vis.visualize(bubblesort)
     sleep(2)
+
     vis.visualize(destructionsort)
+    sleep(2)
 
 if __name__ == '__main__':
     main()

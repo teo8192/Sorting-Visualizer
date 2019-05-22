@@ -114,7 +114,7 @@ def mergesort(data, drawfn):
 #
 
 def left_child(x):
-    return 2 + x + 1
+    return 2 * x + 1
 
 def right_child(x):
     return 2 * x + 2
