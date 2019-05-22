@@ -15,16 +15,18 @@ def main():
     Visualize all dem stuff
     """
     #vis = Visualize(500)
-    vis = Visualize()
+    vis = Visualize(w=4)
 
+    vis.mode = "boxes"
+    vis.visualize(bubblesort)
+
+    vis.visualize(heapsort)
     vis.visualize(quicksort_lomuto)
     vis.visualize(quicksort_hoare)
     vis.visualize(radixsort)
-    vis.visualize(heapsort)
     vis.visualize(mergesort)
     vis.visualize(selection_sort)
     vis.visualize(insertion_sort)
-    vis.visualize(bubblesort)
     vis.visualize(destructionsort)
 
 if __name__ == '__main__':
