@@ -325,3 +325,89 @@ def radixsort(data, drawfn):
     while int(m / exp) > 0:
         count_sort(data, exp, drawfn)
         exp *= 10
+
+def drawfunc(data=None):
+    """
+    The drawfunc should not do anything
+    """
+    pass
+
+def gen_data(size=100):
+    """
+    Generate an array of random data
+    """
+    from random import randint
+    return [randint(0, size) for _ in range(size)]
+
+def sorted(data):
+    """
+    Return true if the data is sorted, false otherwise
+    """
+    for i in range(len(data) - 1):
+        if data[i] > data[i + 1]:
+            return False
+    return True
+
+def test_sorting(sort_func):
+    """
+    Test the input sorting function
+    """
+    data = gen_data()
+    sort_func(data, drawfunc)
+    if not sorted(data):
+        print('did not pass')
+        return 1
+
+    print('pass')
+    return 0
+
+def test_swap():
+    from random import randint
+    data = gen_data()
+    failed = 0
+    for _ in range(10):
+        i = randint(0, 100)
+        j = randint(0, 100)
+        while j == i:
+            j = randint(0, 100)
+
+        old_i = data[i]
+        old_j = data[j]
+        swap_array(data, i, j)
+        if data[i] != old_j or data[j] != old_i:
+            failed += 1
+
+    print('failed ' + str(failed) + ' of 10 swap tests')
+    return failed
+
+
+def _run_tests():
+    failed = test_sorting(bubblesort)
+    failed += test_sorting(heapsort)
+    failed += test_sorting(insertion_sort)
+    failed += test_sorting(mergesort)
+    failed += test_sorting(quicksort_hoare)
+    failed += test_sorting(quicksort_lomuto)
+    failed += test_sorting(radixsort)
+    failed += test_sorting(selection_sort)
+    failed += test_sorting(destructionsort)
+
+    print('failed ' + str(failed) + ' of 9 sorting functions\n')
+
+    failed += test_swap()
+
+    print('test get_max function')
+    data = gen_data()
+    mx = get_max(data)
+    for i in data:
+        if i > mx:
+            failed += 1
+            print('failed max test')
+
+    if failed > 0:
+        exit(1)
+
+    exit(0)
+
+if __name__ == '__main__':
+    _run_tests()
