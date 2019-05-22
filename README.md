@@ -36,3 +36,13 @@ Then in the main.py file, add the line
 ```
 
 Spice up the algorithm with the drawing function to visualize it propperly.
+
+## Implemented sorting algorithms
+
+ * Radix sort
+ * Heap sort
+ * Merge sort
+ * Quicksort
+ * Selection sort
+ * Insertion sort
+ * Bubble sort

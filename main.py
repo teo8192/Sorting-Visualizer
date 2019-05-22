@@ -17,14 +17,14 @@ def main():
     #vis = Visualize(500)
     vis = Visualize()
 
-    # vis.visualize(radixsort)
-    # vis.visualize(heapsort)
-    # vis.visualize(mergesort)
-    # vis.visualize(quicksort)
+    vis.visualize(radixsort)
+    vis.visualize(heapsort)
+    vis.visualize(mergesort)
+    vis.visualize(quicksort)
     vis.visualize(selection_sort)
-    #vis.visualize(insertion_sort)
-    # vis.visualize(bubblesort)
-    # vis.visualize(destructionsort)
+    vis.visualize(insertion_sort)
+    vis.visualize(bubblesort)
+    vis.visualize(destructionsort)
 
 if __name__ == '__main__':
     main()
