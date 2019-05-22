@@ -96,6 +96,9 @@ def split(data, temp, lo, hi, drawfn):
         split(temp, data, lo, mid, drawfn)
         split(temp, data, mid, hi, drawfn)
         merge(temp, data, lo, mid, hi, drawfn)
+
+        # This shit right here is not a part of the sorting algorithm,
+        # but only to visulise it nicely
         i = lo
         while i < hi:
             temp[i] = data[i]
@@ -144,7 +147,7 @@ def sift_down(data, start, end, drawfn):
         data[swap] = temp
 
         root = swap
-    drawfn()
+        drawfn()
 
 def heapify(data, drawfn):
     """
