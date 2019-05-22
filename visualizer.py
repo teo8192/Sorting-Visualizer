@@ -65,7 +65,8 @@ class Visualize:
         self.draw_funcs = {"bars": self.draw_bars,
                            "grayscale": self.draw_grayscale,
                            "boxes": self.draw_boxes,
-                           "rainbow": self.draw_rainbow}
+                           "rainbow": self.draw_rainbow,
+                           "bars_ordered": self.draw_bars_order}
         self._mode = mode
         self._vis_func = self.draw_funcs[self.mode]
 
@@ -137,6 +138,25 @@ class Visualize:
             else:
                 pygame.draw.rect(self.screen, self._fg,
                                  (x * self.block_size, self.height - y, self.block_size, y))
+
+    def draw_bars_order(self, data):
+        """
+        Visualizes the data as bars
+        """
+        prev = None
+        #pylint: disable=invalid-name
+        for x, y in enumerate(data):
+            if prev is None or y >= prev:
+                col = (0, 255, 0)
+            else:
+                col = (255, 0, 0)
+            prev = y
+            if self.block_size == 1:
+                pygame.draw.line(self.screen, col, (x, self.height), (x, self.height - y))
+            else:
+                pygame.draw.rect(self.screen, col,
+                                 (x * self.block_size, self.height - y, self.block_size, y))
+
 
     def draw_boxes(self, data):
         """

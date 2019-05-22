@@ -67,6 +67,7 @@ Currently implemented modes:
  * grayscale
  * boxes
  * bars
+ * bars_ordered (bars are green if they are greater than or equal to the one before, red otherwise)
 
 ## Other options
 

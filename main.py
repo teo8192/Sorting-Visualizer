@@ -16,6 +16,10 @@ def main():
     #vis = Visualize(500)
     vis = Visualize(block_size=4)
 
+    vis.mode = "bars_ordered"
+    vis.visualize(mergesort)
+    vis.visualize(quicksort_hoare)
+
     vis.mode = "rainbow"
     vis.visualize(radixsort)
     vis.mode = "boxes"
@@ -23,8 +27,6 @@ def main():
     vis.mode = "bars"
     vis.visualize(heapsort)
     vis.visualize(quicksort_lomuto)
-    vis.visualize(quicksort_hoare)
-    vis.visualize(mergesort)
     vis.visualize(selection_sort)
     vis.visualize(insertion_sort)
     vis.visualize(destructionsort)
