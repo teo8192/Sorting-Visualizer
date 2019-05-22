@@ -13,7 +13,6 @@ class Visualize:
         self.width = dim
         self.height = self.width
         self.data = []
-        self.gen_data()
         #pylint: disable=no-member
         pygame.init()
         self.screen = pygame.display.set_mode((self.width, self.height))
@@ -22,6 +21,7 @@ class Visualize:
         """
         Visualize the sorting function
         """
+        self.gen_data()
         sortfn(self.data, self.draw)
 
     def gen_data(self):
