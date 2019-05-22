@@ -14,7 +14,7 @@ def main():
     """
     Visualize all dem stuff
     """
-    vis = Visualize()
+    vis = Visualize(500)
 
     vis.visualize(heapsort)
     sleep(2)
