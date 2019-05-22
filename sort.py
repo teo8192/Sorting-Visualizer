@@ -8,24 +8,57 @@ def swap_array(data, i, j):
     data[i] = data[j]
     data[j] = tmp
 
-def quicksort(data, drawfn):
+def quicksort_lomunto(data, drawfn):
     """
     Entry point for quicksort
     """
-    print('quicksort')
-    qs(data, 0, len(data) - 1, drawfn)
+    print('quicksort lomunto')
+    qs_lomunto(data, 0, len(data) - 1, drawfn)
 
 #pylint: disable=invalid-name
-def qs(data, lo, hi, drawfn):
+def qs_lomunto(data, lo, hi, drawfn):
     """
     Recursive quicksort
     """
     if lo < hi:
-        p = partition(data, lo, hi, drawfn)
-        qs(data, lo, p, drawfn)
-        qs(data, p + 1, hi, drawfn)
+        p = partition_lomunto(data, lo, hi, drawfn)
+        qs_lomunto(data, lo, p - 1, drawfn)
+        qs_lomunto(data, p + 1, hi, drawfn)
 
-def partition(data, lo, hi, drawfn):
+def partition_lomunto(data, lo, hi, drawfn):
+    """
+    Lomunto partition sceme
+    """
+    i = lo
+    j = lo
+    while j < hi:
+        if data[j] < data[hi]:
+            swap_array(data, i, j)
+            drawfn()
+            i += 1
+        j += 1
+    swap_array(data, i, hi)
+    return i
+
+def quicksort_hoare(data, drawfn):
+    """
+    Entry point for quicksort
+    """
+    print('quicksort hoare')
+    qs_hoare(data, 0, len(data) - 1, drawfn)
+
+#pylint: disable=invalid-name
+def qs_hoare(data, lo, hi, drawfn):
+    """
+    Recursive quicksort
+    """
+    if lo < hi:
+        p = partition_hoare(data, lo, hi, drawfn)
+        qs_hoare(data, lo, p, drawfn)
+        qs_hoare(data, p + 1, hi, drawfn)
+
+
+def partition_hoare(data, lo, hi, drawfn):
     """
     Hoare partition sceme
     """
