@@ -3,6 +3,11 @@ Sorting algorithms
 Author: Teodor Dahl Knutsen <teodor@dahlknutsen.no>
 """
 
+def swap_array(data, i, j):
+    tmp = data[i]
+    data[i] = data[j]
+    data[j] = tmp
+
 def quicksort(data, drawfn):
     """
     Entry point for quicksort
@@ -39,9 +44,7 @@ def partition(data, lo, hi, drawfn):
         if i >= j:
             return j
 
-        tmp = data[i]
-        data[i] = data[j]
-        data[j] = tmp
+        swap_array(data, i, j)
         drawfn()
 
 #
@@ -61,15 +64,13 @@ def bubblesort(data, drawfn):
             if data[i] > data[i + 1]:
                 drawfn()
                 swapped = True
-                tmp = data[i]
-                data[i] = data[i+1]
-                data[i+1] = tmp
+                swap_array(data, i, i + 1)
 
 #
 # MERGE SORT
 #
 
-def merge(data, temp, lo, mid, hi, drawfn):
+def merge(data, temp, lo, mid, hi):
     """
     Merge two sub arrays
     """
@@ -84,7 +85,6 @@ def merge(data, temp, lo, mid, hi, drawfn):
             temp[k] = data[j]
             j += 1
 
-        #drawfn()
         k += 1
 
 def split(data, temp, lo, hi, drawfn):
@@ -95,7 +95,7 @@ def split(data, temp, lo, hi, drawfn):
         mid = int((lo + hi) / 2)
         split(temp, data, lo, mid, drawfn)
         split(temp, data, mid, hi, drawfn)
-        merge(temp, data, lo, mid, hi, drawfn)
+        merge(temp, data, lo, mid, hi)
 
         # This shit right here is not a part of the sorting algorithm,
         # but only to visulise it nicely
@@ -117,12 +117,21 @@ def mergesort(data, drawfn):
 #
 
 def left_child(x):
+    """
+    The index of the left child in a heap
+    """
     return 2 * x + 1
 
 def right_child(x):
+    """
+    Index of the right child in a heap
+    """
     return 2 * x + 2
 
 def parent(x):
+    """
+    Index of a parent in a heap
+    """
     return int((x - 1) / 2)
 
 def sift_down(data, start, end, drawfn):
@@ -142,9 +151,7 @@ def sift_down(data, start, end, drawfn):
         if swap == root:
             return
 
-        temp = data[root]
-        data[root] = data[swap]
-        data[swap] = temp
+        swap_array(data, root, swap)
 
         root = swap
         drawfn()
@@ -160,16 +167,18 @@ def heapify(data, drawfn):
 
 def heapsort(data, drawfn):
     """
-    Heapsort yay
+    Heapsort
+    This will turn an array into a heap,
+    then take the largest element of that heap
+    and put it on the end of a list
+    O(n log n)
     """
     print('heap sort')
     heapify(data, drawfn)
 
     end = len(data) - 1
     while end > 0:
-        temp = data[end]
-        data[end] = data[0]
-        data[0] = temp
+        swap_array(data, end, 0)
 
         end -= 1
 
@@ -188,9 +197,7 @@ def insertion_sort(data, drawfn):
     while i < len(data):
         j = i
         while j > 0 and data[j-1]>data[j]:
-            tmp = data[j]
-            data[j] = data[j-1]
-            data[j-1] = tmp
+            swap_array(data, j, j - 1)
             j -= 1
             drawfn()
         i += 1
@@ -214,9 +221,7 @@ def selection_sort(data, drawfn):
             j += 1
 
         if min_idx != i:
-            tmp = data[i]
-            data[i] = data[min_idx]
-            data[min_idx] = tmp
+            swap_array(data, i, min_idx)
             drawfn()
 
         min_idx = i + 1
@@ -249,27 +254,17 @@ def get_max(data):
     return mx
 
 def count_sort(data, exp, drawfn):
+    """
+    Count and sort
+    """
     output = [0 for _ in range(len(data))]
     count = [0 for _ in range(10)]
 
-    if len(count) != 10:
-        print('wrong len')
-        exit()
-
-    for i in range(len(data)):
-        count[int(data[i]/exp) % 10] += 1
-    # i = 0
-    # while i < len(data):
-        # count[int(data[i]/exp) % 10] += 1
-        # i += 1
+    for d in data:
+        count[int(d/exp) % 10] += 1
 
     for i in [x + 1 for x in range(9)]:
         count[i] += count[i - 1]
-
-    # i = 1
-    # while i < 10:
-        # count[i] += count[i - 1]
-        # i += 1
 
     i = len(data) - 1
     while i >= 0:
@@ -277,16 +272,15 @@ def count_sort(data, exp, drawfn):
         count[int(data[i] / exp) % 10] -= 1
         i -= 1
 
-    i = 0
-    while i < len(data):
-        data[i] = output[i]
+    for i, o in enumerate(output):
+        data[i] = o
         drawfn()
-        i += 1
 
 def radixsort(data, drawfn):
     """
     Radix sort algorithm
     """
+    print('radix sort')
     m = get_max(data)
     exp = 1
     while int(m / exp) > 0:
