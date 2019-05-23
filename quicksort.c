@@ -1,3 +1,7 @@
+/*
+ * Author: Teodor Dahl Knutsen <teodor@dahlknutsen.no>
+ */
+
 #include <stdio.h>
 #include "sort.h"
 

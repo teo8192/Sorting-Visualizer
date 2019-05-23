@@ -88,9 +88,10 @@ void my_sort_func(int *data, int size, int(*drawfn)(int* data));
 
 To visualize a snapshot in the sorting, call the `drawfn(data)` function, with the data you wish to present as the only parameter.
 
-
 Run `make` to compile the shared library and run
 
 ```bash
 # python3 c_sort.py
 ```
+
+If you are on Windows, you may need to change the `Makefile` to generate a `dynlib` or `dll` something instead of a `so`. Then the `c_sort.py` file also needs to be changed to open the correct library.

@@ -17,7 +17,7 @@ def main():
     vis = Visualize(block_size=4)
     #vis = Visualize(500)
 
-    vis.mode = "rainbow"
+    vis.mode = "bars"
     vis.visualize(radixsort)
     vis.visualize(mergesort)
     vis.mode = "boxes"
@@ -25,7 +25,7 @@ def main():
     #vis.mode = "boxes"
     vis.visualize(bubblesort)
     #vis.mode = "bars"
-    vis.mode = "grayscale"
+    vis.mode = "boxes"
     vis.visualize(heapsort)
     vis.visualize(quicksort_lomuto)
     vis.visualize(selection_sort)

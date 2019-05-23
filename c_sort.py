@@ -1,5 +1,6 @@
 """
 Visualize C functions
+Author: Teodor Dahl Knutsen <teodor@dahlknutsen.no>
 """
 from ctypes import *
 from array import array
