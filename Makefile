@@ -10,4 +10,4 @@ clean:
 	@rm -rf libsort.so
 
 libsort.so: $(LIBSOURCE) Makefile
-	gcc -shared -o $@ -fPIC $(LIBSOURCE)
+	gcc -shared -o $@ -fPIC $(LIBSOURCE) -lpthread

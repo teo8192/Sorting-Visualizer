@@ -13,4 +13,6 @@ void mergesort(int *data, int size, drawfn_t drawfn);
 void heapsort(int *data, int size, drawfn_t drawfn);
 void quicksort(int *data, int size, drawfn_t drawfn);
 
+void lomuto(int *data, int size, drawfn_t drawfn);
+
 #endif
