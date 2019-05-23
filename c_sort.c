@@ -8,6 +8,12 @@
 
 void sort(int *data, int size, drawfn_t drawfn)
 {
-	quicksort(data, size, drawfn);
+	heapsort(data, size, drawfn);
+	//quicksort(data, size, drawfn);
+
+	// DO NOT REMOVE, NEEDS TO BE HERE!
+	// This will set the data in the python object 
+	// to the correct value
+	drawfn(data);
 }
 
