@@ -1,5 +1,7 @@
 # Sorting visualizer
 
+This is an algorithm visualizer written in pyhton using pygame, that can visualize either python functions/methods or c functions.
+
 ## Requirements
 
 This works on Arch Linux running python 3.7.3
