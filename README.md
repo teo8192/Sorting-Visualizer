@@ -1,6 +1,6 @@
 # Sorting visualizer
 
-This is an algorithm visualizer written in pyhton using pygame, that can visualize either python functions/methods or c functions.
+This is an algorithm visualizer written in python using pygame, that can visualize either python functions/methods or c functions.
 
 ## Requirements
 
