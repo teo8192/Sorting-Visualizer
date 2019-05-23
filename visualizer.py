@@ -66,7 +66,8 @@ class Visualize:
                            "grayscale": self.draw_grayscale,
                            "boxes": self.draw_boxes,
                            "rainbow": self.draw_rainbow,
-                           "bars_ordered": self.draw_bars_order}
+                           "bars_ordered": self.draw_bars_order,
+                           "ellipses": self.draw_ellipses}
         self._mode = mode
         self._vis_func = self.draw_funcs[self.mode]
 
@@ -126,6 +127,18 @@ class Visualize:
         Regenerate the data array
         """
         self.data = [randint(0, self.height) for _ in range(self.num)]
+
+    def draw_ellipses(self, data):
+        """
+        Visualizes data as ellipses
+        """
+        #pylint: disable=invalid-name
+        for x, y in enumerate(data):
+            x *= self.block_size / 2
+            col = float_to_color(y / self.height)
+            dim = self.width - x * 2
+            pygame.draw.ellipse(self.screen, col, (x, x, dim, dim))
+
 
     def draw_bars(self, data):
         """
