@@ -17,20 +17,24 @@ def main():
     vis = Visualize(block_size=4)
     #vis = Visualize(500)
 
-    vis.mode = "bars"
     vis.visualize(radixsort)
+    vis.mode = "ellipses"
     vis.visualize(mergesort)
-    vis.mode = "boxes"
+    vis.mode = "grayscale"
     vis.visualize(quicksort_hoare)
+    vis.mode = "boxes"
+    vis.visualize(heapsort)
+    vis.mode = "bars"
+    vis.visualize(quicksort_lomuto)
+    vis.mode = "bars_ordered"
+    vis.visualize(selection_sort)
+    exit()
+    vis.mode = "boxes"
     #vis.mode = "boxes"
     vis.visualize(bubblesort)
     #vis.mode = "bars"
     vis.mode = "boxes"
-    vis.visualize(heapsort)
-    vis.visualize(quicksort_lomuto)
-    vis.visualize(selection_sort)
     vis.visualize(insertion_sort)
-    vis.mode = "bars_ordered"
     vis.visualize(destructionsort)
 
 if __name__ == '__main__':

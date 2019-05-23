@@ -44,4 +44,4 @@ class SortC(Visualize):
         self.visualize(self.sortfun())
 
 if __name__ == '__main__':
-    SortC(mode="grayscale", block_size=4).run()
+    SortC(mode="ellipses", block_size=4).run()
