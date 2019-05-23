@@ -270,13 +270,18 @@ def destructionsort(data, drawfn):
     Remove all elements that is not in order
     """
     print('destruction sort')
-    least = data[0]
-    for i in range(len(data)):
-        if data[i] <= least:
-            data[i] = 0
-            drawfn()
-        else:
-            least = data[i]
+    tmp = [data[0]]
+    for d in data:
+        if d >= tmp[-1]:
+            tmp += [d]
+
+    for i in range(len(data)-len(tmp)):
+        data[i] = 0
+        drawfn()
+
+    for i in range(len(tmp)):
+        data[i + len(data) - len(tmp)] = tmp[i]
+        drawfn()
 
 #
 # RADIX SORT
