@@ -75,3 +75,22 @@ The window dimentions may be set with the `dim` variable when initializing `Visu
 
 `block_size` is the with/height of the stripes in the rainbow, boxes and/or bars.
 `num` is the number of stripes/bars etc.
+
+# Visualizing C functions
+
+Implement your c algorithm and add a call to it in the `c_sort.c:sort()` function.
+
+Your sorting function needs to have the following signature:
+
+```c
+void my_sort_func(int *data, int size, int(*drawfn)(int* data));
+```
+
+To visualize a snapshot in the sorting, call the `drawfn(data)` function, with the data you wish to present as the only parameter.
+
+
+Run `make` to compile the shared library and run
+
+```bash
+# python3 c_sort.py
+```

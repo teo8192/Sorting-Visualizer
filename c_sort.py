@@ -43,4 +43,4 @@ class SortC(Visualize):
         self.visualize(self.sortfun())
 
 if __name__ == '__main__':
-    SortC(mode="bars").run()
+    SortC().run()
