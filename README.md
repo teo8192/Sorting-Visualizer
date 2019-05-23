@@ -29,7 +29,7 @@ A window will appear, visualizing the different sorting algorithms.
 ## Adding your own sorting algorithm
 
 Write your algorithm in a function that takes two parameters: the data list and a function to draw said list.
-Then in the main.py file, add the line
+Then in the `main.py` file, add the line
 
 ```python
 	vis.visualize(your_algorithm)
