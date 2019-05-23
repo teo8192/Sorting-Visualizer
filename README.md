@@ -95,3 +95,5 @@ python3 c_sort.py
 ```
 
 If you are on Windows, you may need to change the `Makefile` to generate a `dynlib` or `dll` something instead of a `so`. Then the `c_sort.py` file also needs to be changed to open the correct library.
+
+If you want to change the looks of your visualization, go to the bottom of the `c_sort.py` file and customize the parameters of the `SortC` object.

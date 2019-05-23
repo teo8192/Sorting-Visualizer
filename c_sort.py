@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Visualize C functions
 Author: Teodor Dahl Knutsen <teodor@dahlknutsen.no>
@@ -44,4 +45,4 @@ class SortC(Visualize):
         self.visualize(self.sortfun())
 
 if __name__ == '__main__':
-    SortC().run()
+    SortC(mode="boxes").run()
