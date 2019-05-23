@@ -3,7 +3,7 @@
 
 #define SWAP(a,b) ((&(a) == &(b)) ? (a) : ((a)^=(b),(b)^=(a),(a)^=(b)))
 
-typedef int(*drawfn_t)(int*);
+typedef int(*drawfn_t)(int*, int*);
 typedef void(*sortfunc_t)(int*, int, drawfn_t);
 
 void bubblesort(int *data, int size, drawfn_t drawfn);

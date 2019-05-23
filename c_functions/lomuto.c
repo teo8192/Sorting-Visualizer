@@ -26,7 +26,7 @@ static int partition(int *data, int min, int max, drawfn_t drawfn)
 
 			if (i % 2 == 0) {
 				pthread_mutex_lock(&mutex_lock);
-				drawfn(data);
+				drawfn(data, (int[2]){i, j});
 				pthread_mutex_unlock(&mutex_lock);
 			}
 			++i;

@@ -128,7 +128,7 @@ class Visualize:
         """
         self.data = [randint(0, self.height) for _ in range(self.num)]
 
-    def draw_ellipses(self, data):
+    def draw_ellipses(self, data, imp=None):
         """
         Visualizes data as ellipses
         """
@@ -140,19 +140,23 @@ class Visualize:
             pygame.draw.ellipse(self.screen, col, (x, x, dim, dim))
 
 
-    def draw_bars(self, data):
+    def draw_bars(self, data, imp=None):
         """
         Visualizes the data as bars
         """
         #pylint: disable=invalid-name
         for x, y in enumerate(data):
-            if self.block_size == 1:
-                pygame.draw.line(self.screen, self._fg, (x, self.height), (x, self.height - y))
+            if imp is not None and imp.__contains__(x):
+                col = (255, 0, 0)
             else:
-                pygame.draw.rect(self.screen, self._fg,
+                col = self._fg
+            if self.block_size == 1:
+                pygame.draw.line(self.screen, col, (x, self.height), (x, self.height - y))
+            else:
+                pygame.draw.rect(self.screen, col,
                                  (x * self.block_size, self.height - y, self.block_size, y))
 
-    def draw_bars_order(self, data):
+    def draw_bars_order(self, data, imp=None):
         """
         Visualizes the data as bars
         """
@@ -171,7 +175,7 @@ class Visualize:
                                  (x * self.block_size, self.height - y, self.block_size, y))
 
 
-    def draw_boxes(self, data):
+    def draw_boxes(self, data, imp=None):
         """
         Visualizes the data as bars
         """
@@ -181,7 +185,7 @@ class Visualize:
                              (x * self.block_size, self.height - y,
                               self.block_size, self.block_size))
 
-    def draw_rainbow(self, data):
+    def draw_rainbow(self, data, imp=None):
         """
         Grayscale visualization of the data
         """
@@ -195,7 +199,7 @@ class Visualize:
                 pygame.draw.rect(self.screen, col,
                                  (x * self.block_size, 0, self.block_size, self.height))
 
-    def draw_grayscale(self, data):
+    def draw_grayscale(self, data, imp=None):
         """
         Grayscale visualization of the data
         """
@@ -210,7 +214,7 @@ class Visualize:
                 pygame.draw.rect(self.screen, (col, col, col),
                                  (x * self.block_size, 0, self.block_size, self.height))
 
-    def draw(self, data=None):
+    def draw(self, data=None, imp=None):
         """
         Draws the data array
         """
@@ -223,7 +227,7 @@ class Visualize:
 
         pygame.draw.rect(self.screen, self._bg, (0, 0, self.width, self.height))
 
-        self._vis_func(data)
+        self._vis_func(data, imp)
 
         pygame.display.update()
 

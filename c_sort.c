@@ -15,6 +15,6 @@ void sort(int *data, int size, drawfn_t drawfn)
 	// DO NOT REMOVE, NEEDS TO BE HERE!
 	// This will set the data in the python object 
 	// to the correct value
-	drawfn(data);
+	drawfn(data, (int[2]){0,0});
 }
 

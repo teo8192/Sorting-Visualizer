@@ -6,6 +6,8 @@ Author: Teodor Dahl Knutsen <teodor@dahlknutsen.no>
 from ctypes import CDLL, POINTER, c_int, CFUNCTYPE
 from visualizer import Visualize
 
+DRAW_SIGNATURE = CFUNCTYPE(c_int, POINTER(c_int), POINTER(c_int))
+
 class SortC(Visualize):
     """
     Make the Visualize calls able to visualize c algorithms
@@ -16,7 +18,7 @@ class SortC(Visualize):
         self.libsort.sort.restype = None
         self.libsort.sort.argtypes = [POINTER(c_int),
                                       c_int,
-                                      CFUNCTYPE(c_int, POINTER(c_int))]
+                                      DRAW_SIGNATURE]
 
     def sortfun(self):
         """
@@ -24,14 +26,18 @@ class SortC(Visualize):
         that is wrapping the c function
         """
         def fun(data, drawfn):
-            def draw(dat):
+            def draw(dat, imp):
                 self.data = list(dat[0:(len(data))])
-                drawfn()
+                if imp:
+                    important = list(imp[0:2])
+                    drawfn(imp=important)
+                else:
+                    drawfn()
                 return len(self.data)
 
-            self.libsort.sort((c_int * len(data))(*data),               # The array
-                              len(data),                                # length of the array
-                              CFUNCTYPE(c_int, (POINTER(c_int)))(draw)) # Function pointer
+            self.libsort.sort((c_int * len(data))(*data), # The array
+                              len(data),                  # length of the array
+                              DRAW_SIGNATURE(draw))                  # Function pointer
 
         return fun
 
@@ -44,4 +50,4 @@ class SortC(Visualize):
         self.visualize(self.sortfun())
 
 if __name__ == '__main__':
-    SortC(mode="ellipses", block_size=4).run()
+    SortC(mode="bars", num=200).run()

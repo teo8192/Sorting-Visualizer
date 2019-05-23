@@ -9,17 +9,24 @@ int partition(int *data, int min, int max, drawfn_t drawfn)
 {
 	int pivot = data[(min + max) / 2], i = min - 1, j = max + 1;
 
+	drawfn(data, (int[2]){(min + max) / 2, -1});
+	getchar();
+
 	for (;;) {
 		while (data[++i] < pivot);
 		while (data[--j] > pivot);
 		if (i >= j)
 			return j;
 
+		drawfn(data, (int[2]){i,j});
+		getchar();
+
 		int tmp = data[i];
 		data[i] = data[j];
 		data[j] = tmp;
 
-		drawfn(data);
+		drawfn(data, (int[2]){i,j});
+		getchar();
 	}
 }
 

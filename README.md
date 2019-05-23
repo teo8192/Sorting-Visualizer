@@ -85,10 +85,19 @@ Implement your c algorithm and add a call to it in the `c_sort.c:sort()` functio
 Your sorting function needs to have the following signature:
 
 ```c
-void my_sort_func(int *data, int size, int(*drawfn)(int* data));
+void my_sort_func(int *data, int size, int(*drawfn)(int* data, int* important));
 ```
 
-To visualize a snapshot in the sorting, call the `drawfn(data)` function, with the data you wish to present as the only parameter.
+To visualize a snapshot in the sorting, call the `drawfn(data, NULL)` function, with the data you wish to present as the only parameter.
+
+If you have one or two specific values you want to highlight, you can call the function like this:
+```c
+drawfn(data, (inr[2]) { 1, 5 })
+```
+
+This needs to either be `NULL` or an array of size 2.
+If the mode is set to `bars`, the two walues with those indecies will be highlighted.
+If you only want to highlight one value, set the other one to `-1`.
 
 Run `make` to compile the shared library and run
 

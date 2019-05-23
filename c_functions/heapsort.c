@@ -20,8 +20,9 @@ static void sift_down(int *data, int start, int end, drawfn_t drawfn)
 		if (swap == root)
 			return;
 		else {
+
 			SWAP(data[root], data[swap]);
-			drawfn(data);
+			drawfn(data, (int[2]){root,swap});
 			root = swap;
 		}
 	}
