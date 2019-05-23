@@ -1,6 +1,6 @@
 # Author: Teodor Dahl Knutsen <teodor@dahlknutsen.no>
 
-LIBSOURCE=*.c *.h
+LIBSOURCE=c_sort.c c_functions/*.c c_functions/*.h
 
 .PHONY: all
 all: libsort.so

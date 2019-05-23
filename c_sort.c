@@ -4,12 +4,12 @@
 
 #include <stdio.h>
 
-#include "sort.h"
+#include "c_functions/sort.h"
 
 void sort(int *data, int size, drawfn_t drawfn)
 {
-	heapsort(data, size, drawfn);
-	//quicksort(data, size, drawfn);
+	//heapsort(data, size, drawfn);
+	quicksort(data, size, drawfn);
 
 	// DO NOT REMOVE, NEEDS TO BE HERE!
 	// This will set the data in the python object 
