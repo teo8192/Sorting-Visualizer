@@ -4,6 +4,7 @@ This will visualize stuff
 Author: Teodor Dahl Knutsen <teodor@dahlknutsen.no>
 """
 
+from time import sleep
 from sort import (quicksort_lomuto, quicksort_hoare, bubblesort,
                   mergesort, heapsort, insertion_sort,
                   selection_sort, destructionsort, radixsort)
@@ -13,23 +14,23 @@ def main():
     """
     Visualize all dem stuff
     """
-    #vis = Visualize(500)
     vis = Visualize(block_size=4)
+    #vis = Visualize(500)
 
     vis.mode = "rainbow"
     vis.visualize(radixsort)
-    vis.mode = "bars_ordered"
     vis.visualize(mergesort)
     vis.mode = "boxes"
     vis.visualize(quicksort_hoare)
     #vis.mode = "boxes"
     vis.visualize(bubblesort)
     #vis.mode = "bars"
+    vis.mode = "grayscale"
     vis.visualize(heapsort)
     vis.visualize(quicksort_lomuto)
     vis.visualize(selection_sort)
     vis.visualize(insertion_sort)
-    vis.mode = "grayscale"
+    vis.mode = "bars_ordered"
     vis.visualize(destructionsort)
 
 if __name__ == '__main__':
