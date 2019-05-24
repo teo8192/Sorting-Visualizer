@@ -32,7 +32,7 @@ class Visualize:
     """
     The visualize class
     """
-    def __init__(self, dim=1000, mode="rainbow", block_size=None, num=None, step_through=False):
+    def __init__(self, dim=None, mode="rainbow", block_size=None, num=None, step_through=False, width=1000, height=1000):
         """
         dim: with and height dimensions of the screen, a single integer
         mode: string reprecenting the mode. default: 'rainbow'
@@ -45,6 +45,8 @@ class Visualize:
         If the block_size and num does not multiply to the dim,
         dim gets set to the product of num and block_size
         """
+        if dim is None:
+            dim = width
 
         if num is None and block_size is None:
             self.num = dim
@@ -60,7 +62,7 @@ class Visualize:
         dim = self.block_size * self.num
 
         self.width = dim
-        self.height = self.width
+        self.height = height
         self.data = []
         self.draw_funcs = {"bars": self.draw_bars,
                            "grayscale": self.draw_grayscale,

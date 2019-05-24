@@ -50,4 +50,4 @@ class SortC(Visualize):
         self.visualize(self.sortfun())
 
 if __name__ == '__main__':
-    SortC(mode="boxes", block_size=4, step_through=True).run()
+    SortC(mode="bars", dim=1800).run()
