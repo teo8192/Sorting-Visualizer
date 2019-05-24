@@ -92,7 +92,7 @@ To visualize a snapshot in the sorting, call the `drawfn(data, NULL)` function, 
 
 If you have one or two specific values you want to highlight, you can call the function like this:
 ```c
-drawfn(data, (inr[2]) { 1, 5 })
+drawfn(data, (int[2]) { 1, 5 })
 ```
 
 This needs to either be `NULL` or an array of size 2.
