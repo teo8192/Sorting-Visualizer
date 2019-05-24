@@ -78,6 +78,10 @@ The window dimentions may be set with the `dim` variable when initializing `Visu
 `block_size` is the with/height of the stripes in the rainbow, boxes and/or bars.
 `num` is the number of stripes/bars etc.
 
+It is also possible to set the `step_through` argument when initializing.
+This will make the visualizer pause after each frame drawn, and will continue when the keyboard is pressed or the mouse is clicked.
+Combined with showing important values (ex two values to be swapped or pivot choice in quicksort), the algorithm is better visualized.
+
 # Visualizing C functions
 
 Implement your c algorithm and add a call to it in the `c_sort.c:sort()` function.
@@ -91,12 +95,13 @@ void my_sort_func(int *data, int size, int(*drawfn)(int* data, int* important));
 To visualize a snapshot in the sorting, call the `drawfn(data, NULL)` function, with the data you wish to present as the only parameter.
 
 If you have one or two specific values you want to highlight, you can call the function like this:
+
 ```c
 drawfn(data, (int[2]) { 1, 5 })
 ```
 
 This needs to either be `NULL` or an array of size 2.
-If the mode is set to `bars`, the two walues with those indecies will be highlighted.
+If the mode is set to `bars` or `boxes`, the two walues with those indecies will be highlighted.
 If you only want to highlight one value, set the other one to `-1`.
 
 Run `make` to compile the shared library and run

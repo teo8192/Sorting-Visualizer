@@ -12,8 +12,8 @@ class SortC(Visualize):
     """
     Make the Visualize calls able to visualize c algorithms
     """
-    def __init__(self, dim=1000, mode="rainbow", block_size=None, num=None):
-        super().__init__(dim, mode, block_size, num)
+    def __init__(self, dim=1000, mode="rainbow", block_size=None, num=None, step_through=False):
+        super().__init__(dim, mode, block_size, num, step_through)
         self.libsort = CDLL("./libsort.so")
         self.libsort.sort.restype = None
         self.libsort.sort.argtypes = [POINTER(c_int),
@@ -50,4 +50,4 @@ class SortC(Visualize):
         self.visualize(self.sortfun())
 
 if __name__ == '__main__':
-    SortC(mode="bars", num=200).run()
+    SortC(mode="boxes", block_size=4, step_through=True).run()

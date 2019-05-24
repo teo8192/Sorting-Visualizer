@@ -32,7 +32,7 @@ class Visualize:
     """
     The visualize class
     """
-    def __init__(self, dim=1000, mode="rainbow", block_size=None, num=None):
+    def __init__(self, dim=1000, mode="rainbow", block_size=None, num=None, step_through=False):
         """
         dim: with and height dimensions of the screen, a single integer
         mode: string reprecenting the mode. default: 'rainbow'
@@ -76,6 +76,8 @@ class Visualize:
         self.screen = pygame.display.set_mode((self.width, self.height))
         self._bg = (0, 0, 0)
         self._fg = (255, 255, 255)
+
+        self.step_through = step_through
 
     @property
     def visualize(self):
@@ -181,7 +183,11 @@ class Visualize:
         """
         #pylint: disable=invalid-name
         for x, y in enumerate(data):
-            pygame.draw.rect(self.screen, self._fg,
+            if imp is not None and imp.__contains__(x):
+                col = (255, 0, 0)
+            else:
+                col = self._fg
+            pygame.draw.rect(self.screen, col,
                              (x * self.block_size, self.height - y,
                               self.block_size, self.block_size))
 
@@ -220,16 +226,25 @@ class Visualize:
         """
         if data is None:
             data = self.data
-        #pylint: disable=no-member
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                exit()
 
         pygame.draw.rect(self.screen, self._bg, (0, 0, self.width, self.height))
 
         self._vis_func(data, imp)
 
         pygame.display.update()
+
+        events = pygame.event.get()
+        #pylint: disable=no-member
+        for event in events:
+            if event.type == pygame.QUIT:
+                exit()
+        while self.step_through:
+            events = pygame.event.get()
+            for event in events:
+                if event.type == pygame.QUIT:
+                    exit()
+                if event.type == pygame.KEYDOWN or event.type == pygame.MOUSEBUTTONDOWN:
+                    return
 
 def example():
     """

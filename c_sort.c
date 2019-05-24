@@ -8,13 +8,13 @@
 
 void sort(int *data, int size, drawfn_t drawfn)
 {
-	heapsort(data, size, drawfn);
-	//quicksort(data, size, drawfn);
+	//heapsort(data, size, drawfn);
+	quicksort(data, size, drawfn);
 	//lomuto(data, size, drawfn);
 
 	// DO NOT REMOVE, NEEDS TO BE HERE!
 	// This will set the data in the python object 
 	// to the correct value
-	drawfn(data, (int[2]){0,0});
+	drawfn(data, (int[2]){-1, -1});
 }
 
