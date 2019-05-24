@@ -100,8 +100,10 @@ If you have one or two specific values you want to highlight, you can call the f
 drawfn(data, (int[2]) { 1, 5 })
 ```
 
-This needs to either be `NULL` or an array of size 2.
-If the mode is set to `bars` or `boxes`, the two walues with those indecies will be highlighted.
+This will draw `data`, but also highlight the values `data[1]` and `data[5]`.
+
+This `important` array needs to either be `NULL` or an array of size 2.
+If the mode in the visualizer is set to either `bars` or `boxes`, the two walues with those indecies will be highlighted.
 If you only want to highlight one value, set the other one to `-1`.
 
 Run `make` to compile the shared library and run
